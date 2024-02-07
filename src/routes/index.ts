@@ -10,6 +10,7 @@ import NotFound from '@/components/views/NotFound.vue'
 import Dashboard from '@/components/views/Dashboard.vue'
 import Profile from '@/components/views/Profile.vue'
 import Styles from '@/components/views/Styles.vue'
+import Login from '@/components/views/Login.vue'
 
 const routes: RouteRecordRaw[] = [
     {
@@ -32,6 +33,10 @@ const routes: RouteRecordRaw[] = [
                 component: Styles,
             },
         ],
+    },
+    {
+        path: `${routerPath}login`,
+        component: Login,
     },
     // 404
     {

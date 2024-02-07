@@ -1,5 +1,12 @@
 <template>
-    <div class="svg-icon" :class="`svg-icon--${name}`">
+    <div
+        class="svg-icon"
+        :class="[
+            `svg-icon--${name}`,
+            stroke ? 'svg-icon--stroke' : '',
+            nostyle ? 'svg-icon--nostyle' : '',
+        ]"
+    >
         <svg><use :xlink:href="`${routerPath}svg-sprite.svg#${name}`"></use></svg>
     </div>
 </template>
@@ -9,6 +16,8 @@ import { routerPath } from '@/routes'
 
 const { name } = defineProps<{
     name: string
+    stroke?: boolean
+    nostyle?: boolean
 }>()
 </script>
 

@@ -1,0 +1,18 @@
+.app-form-control {
+    @apply font-base
+        text-[16px] 
+        text-black
+        font-medium
+        outline-none
+        w-full
+        border
+        border-gray-400
+        px-3
+        py-1.5
+        transition-all
+        duration-300
+        focus:ring-1
+        focus:ring-indigo-400
+        focus:border-indigo-400
+        placeholder:text-gray-400;
+}

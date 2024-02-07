@@ -9,7 +9,7 @@ export type ModalListItem = {
 class ModalController {
     public list = ref<ModalListItem>({})
 
-    public registerModal(modalName: string) {
+    public register(modalName: string) {
         this.list.value[modalName] = {
             visible: false,
         }

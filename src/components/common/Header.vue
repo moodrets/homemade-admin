@@ -1,19 +1,28 @@
 <template>
     <header
-        class="app-header border-b border-stone-300 sticky top-0 z-[40] flex items-center py-3 px-5 bg-white"
+        class="app-header border-b border-stone-300 sticky top-0 z-[40] flex gap-4 justify-between items-center py-3 px-5 bg-white"
     >
-        <div>
-            <router-link :to="{ name: 'dashboard' }">
+        <div
+            class="app-mobile-menu cursor-pointer xl:hidden"
+            @click="offcanvasController.open('mobileMenu')"
+        >
+            <span class="material-icons block text-indigo-400 text-[40px]">menu</span>
+        </div>
+        <div class="app-logo">
+            <router-link :to="{ name: 'dashboard' }" class="block">
                 <img class="block max-w-[40px]" :src="`${routerPath}img/logo.svg`" alt="" />
             </router-link>
         </div>
         <router-link
-            class="ml-auto block w-10 h-10 border border-stone-300 rounded-full overflow-hidden bg-indigo-50"
+            class="w-10 h-10 border flex items-center justify-center border-stone-300 rounded-full overflow-hidden bg-indigo-50"
             :to="{ name: 'profile' }"
-        ></router-link>
+        >
+            <img class="object-cover" :src="`${routerPath}img/avatar-default.svg`" alt="" />
+        </router-link>
     </header>
 </template>
 
 <script setup lang="ts">
+import { offcanvasController } from '@/composables/useOffcanvas'
 import { routerPath } from '@/routes'
 </script>

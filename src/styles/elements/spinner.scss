@@ -1,0 +1,9 @@
+.spinner {
+    @apply w-8
+        h-8
+        border-[3px]
+        border-b-[transparent]
+        border-[currentColor]
+        rounded-full
+        animate-spin;
+}

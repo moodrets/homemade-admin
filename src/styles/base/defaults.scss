@@ -1,31 +1,57 @@
 :root {
     --app-aside-width: 320px;
-    --app-container-width: 980px;
+    --app-container-width: 920px;
+    --app-offcanvas-width: 280px;
 }
 
-@layer base {
-    html {
-        @apply relative font-base text-[18px] font-normal leading-[1.5];
-    }
+html {
+    @apply relative font-base text-black text-[18px] font-normal leading-[1.5];
+}
 
-    body {
-        @apply overflow-y-scroll;
+body {
+    @apply overflow-y-scroll;
 
-        &.is-modal-visible {
-            @apply overflow-hidden;
-        }
+    &.is-modal-visible {
+        @apply overflow-hidden;
     }
+}
 
-    .centered {
-        @apply max-w-[var(--app-container-width)] mx-auto;
-    }
+.centered {
+    @apply max-w-[var(--app-container-width)] mx-auto;
+}
 
-    .app-wrapper {
-        @screen xl {
-            display: grid;
-            grid-template-columns: var(--app-aside-width) 1fr;
-            grid-template-rows: auto 1fr;
-            @apply min-h-dvh;
-        }
+.app-wrapper {
+    @apply opacity-0
+        transition-opacity
+        duration-150;
+
+    &.is-app-loaded {
+        @apply opacity-100;
     }
+}
+
+[class*='material-icons'] {
+    @apply flex-none select-none;
+}
+
+/* width */
+::-webkit-scrollbar {
+    @apply w-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply rounded-sm
+        bg-indigo-400
+        bg-opacity-50;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-opacity-60;
 }

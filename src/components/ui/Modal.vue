@@ -9,7 +9,7 @@
     >
         <div class="app-modal__body" :style="{ width: width || '480px' }">
             <div class="app-modal__close" @click="modalController.close(name)">
-                <SvgIcon name="close"></SvgIcon>
+                <div class="material-icons block text-[32px]">close</div>
             </div>
             <slot></slot>
         </div>
@@ -27,7 +27,7 @@ const { name, width } = defineProps<{
     width?: string
 }>()
 
-modalController.registerModal(name)
+modalController.register(name)
 
 function clickHandler(event: Event) {
     if ((event.target as HTMLElement).classList.contains('app-modal')) {

@@ -1,6 +1,9 @@
 .app-button {
     @apply relative
         inline-flex
+        items-center
+        justify-center
+        gap-2
         outline-none
         border
         border-[currentColor]
@@ -11,13 +14,15 @@
         transition-shadow
         duration-150
         text-black
+        bg-white
         hover:ring-1
         hover:ring-[currentColor]
         hover:shadow-button-hover
         hover:before:border-t-2 
         hover:before:border-l-2
-        hover:after:border-r-2 
-        hover:after:border-b-2;
+        hover:after:border-r-2
+        hover:after:border-b-2
+        focus-visible:shadow-button-hover;
 
     &:before,
     &:after {
@@ -94,6 +99,10 @@
             before:h-2
             after:w-2
             after:h-2;
+
+        [class*='material-icons'] {
+            @apply text-[18px];
+        }
     }
 
     &[disabled],
