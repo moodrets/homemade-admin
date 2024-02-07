@@ -1,0 +1,9 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+    <symbol id="close" viewBox="0 0 48 48">
+        <polygon points="40,5.172 24,21.172 8,5.172 5.171,8 21.172,24 5.171,40 8,42.828 24,26.828 40,42.828 42.829,40 26.828,24 
+		42.829,8"/>
+    </symbol>
+</svg>

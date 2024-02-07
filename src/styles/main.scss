@@ -1,0 +1,11 @@
+@tailwind base;
+
+// base
+@import '@/styles/base/defaults';
+@import '@/styles/base/fonts';
+
+// elements
+@import '@/styles/elements/button';
+
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,31 @@
+:root {
+    --app-aside-width: 320px;
+    --app-container-width: 980px;
+}
+
+@layer base {
+    html {
+        @apply relative font-base text-[18px] font-normal leading-[1.5];
+    }
+
+    body {
+        @apply overflow-y-scroll;
+
+        &.is-modal-visible {
+            @apply overflow-hidden;
+        }
+    }
+
+    .centered {
+        @apply max-w-[var(--app-container-width)] mx-auto;
+    }
+
+    .app-wrapper {
+        @screen xl {
+            display: grid;
+            grid-template-columns: var(--app-aside-width) 1fr;
+            grid-template-rows: auto 1fr;
+            @apply min-h-dvh;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.app-button {
+    @apply relative
+        inline-flex
+        outline-none
+        border
+        border-[currentColor]
+        px-5
+        py-1.5
+        text-[16px]
+        shadow-button
+        transition-shadow
+        duration-150
+        text-black
+        hover:ring-1
+        hover:ring-[currentColor]
+        hover:shadow-button-hover
+        hover:before:border-t-2 
+        hover:before:border-l-2
+        hover:after:border-r-2 
+        hover:after:border-b-2;
+
+    &:before,
+    &:after {
+        content: '';
+        @apply absolute
+            border-[currentColor]
+            w-3 
+            h-3;
+    }
+
+    &:before {
+        content: '';
+        @apply left-1 
+            top-1 
+            border-t 
+            border-l;
+    }
+
+    &:after {
+        content: '';
+        @apply right-1 
+            bottom-1 
+            border-r 
+            border-b;
+    }
+
+    &--primary {
+        @apply text-indigo-400
+            hover:text-indigo-500
+            active:text-indigo-600;
+    }
+
+    &--neutral {
+        @apply text-gray-500
+            hover:text-gray-600
+            active:text-gray-700;
+    }
+
+    &--success {
+        @apply text-emerald-500
+            hover:text-emerald-600
+            active:text-emerald-700;
+    }
+
+    &--danger {
+        @apply text-rose-500
+            hover:text-rose-600
+            active:text-rose-700;
+    }
+
+    &--warning {
+        @apply text-orange-500
+            hover:text-orange-600
+            active:text-orange-700;
+    }
+
+    &--info {
+        @apply text-sky-500
+            hover:text-sky-600
+            active:text-sky-700;
+    }
+
+    &--rounded {
+        @apply rounded-3xl
+        before:rounded-tl-[inherit]
+        after:rounded-br-[inherit];
+    }
+
+    &--sm {
+        @apply text-[14px] 
+            px-4
+            py-0.5
+            before:w-2
+            before:h-2
+            after:w-2
+            after:h-2;
+    }
+
+    &[disabled],
+    &[class*='disabled'] {
+        @apply text-stone-700 
+            pointer-events-none 
+            opacity-50;
+    }
+}

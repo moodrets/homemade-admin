@@ -1,5 +1,19 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+// styles
+import '@/styles/main.scss'
 
-createApp(App).mount('#app')
+// vue imports
+import { createApp } from 'vue'
+import { router } from '@/routes'
+
+// components
+import App from '@/components/App.vue'
+import Modal from '@/components/ui/Modal.vue'
+import Offcanvas from '@/components/ui/Offcanvas.vue'
+import SvgIcon from '@/components/ui/SvgIcon.vue'
+
+createApp(App)
+    .use(router)
+    .component('Modal', Modal)
+    .component('Offcanvas', Offcanvas)
+    .component('SvgIcon', SvgIcon)
+    .mount('#app')
