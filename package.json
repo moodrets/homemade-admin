@@ -6,10 +6,13 @@
     "scripts": {
         "dev": "vite --port 7172",
         "build": "vue-tsc && vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "copy-404": "cd dist && cp index.html 404.html && cd ..",
+        "deploy": "vue-tsc && vite build && npm run copy-404 && gh-pages -d dist"
     },
     "dependencies": {
         "@vueuse/core": "^10.7.2",
+        "axios": "^1.6.7",
         "material-icons": "^1.13.12",
         "vue": "^3.3.11",
         "vue-router": "^4.2.5"
@@ -18,6 +21,7 @@
         "@types/node": "^20.11.16",
         "@vitejs/plugin-vue": "^4.5.2",
         "autoprefixer": "^10.4.17",
+        "gh-pages": "^6.1.1",
         "postcss": "^8.4.34",
         "sass": "^1.70.0",
         "tailwindcss": "^3.4.1",

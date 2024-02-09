@@ -3,9 +3,82 @@
         <section class="mb-10">
             <h2 class="font-bold text-[28px] mb-6">Spinners</h2>
             <div class="flex flex-wrap gap-5">
-                <div class="spinner"></div>
-                <div class="spinner text-emerald-400"></div>
-                <div class="spinner text-rose-500"></div>
+                <div class="app-spinner"></div>
+                <div class="app-spinner text-emerald-400"></div>
+                <div class="app-spinner text-rose-500"></div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="font-bold text-[28px] mb-6">Toasts (notifications)</h2>
+            <div class="flex flex-wrap gap-5">
+                <button type="button" class="app-button" @click="showToast('')">
+                    toast default
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--info"
+                    @click="showToast('info')"
+                >
+                    toast info
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--success"
+                    @click="showToast('success')"
+                >
+                    toast success
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--warning"
+                    @click="showToast('warning')"
+                >
+                    toast warning
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--danger"
+                    @click="showToast('error')"
+                >
+                    toast error
+                </button>
+                <div class="w-full"></div>
+                <button
+                    type="button"
+                    class="app-button app-button--info"
+                    @click="showToast('info', 'top-left')"
+                >
+                    toast top left
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--success"
+                    @click="showToast('success', 'top-right')"
+                >
+                    toast top right
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--warning"
+                    @click="showToast('warning', 'top-center')"
+                >
+                    toast top center
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--danger"
+                    @click="showToast('error', 'bottom-center')"
+                >
+                    toast bottom center
+                </button>
+                <button
+                    type="button"
+                    class="app-button app-button--info"
+                    @click="showToast('info', 'bottom-left')"
+                >
+                    toast error bottom left
+                </button>
             </div>
         </section>
 
@@ -207,4 +280,12 @@
 
 <script setup lang="ts">
 import { modalController } from '@/composables/useModal'
+import { toast } from '@/composables/useToast'
+import { RDToastPosition } from '@/libs/RDToast'
+
+function showToast(type: string, position: RDToastPosition = 'bottom-right') {
+    toast.show(type, `${type} toast`, {
+        position,
+    })
+}
 </script>

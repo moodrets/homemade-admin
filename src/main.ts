@@ -13,10 +13,12 @@ import App from '@/components/App.vue'
 import Modal from '@/components/ui/Modal.vue'
 import Offcanvas from '@/components/ui/Offcanvas.vue'
 import SvgIcon from '@/components/ui/SvgIcon.vue'
+import Button from '@/components/ui/Button.vue'
 
 createApp(App)
     .use(router)
     .component('Modal', Modal)
+    .component('Button', Button)
     .component('Offcanvas', Offcanvas)
     .component('SvgIcon', SvgIcon)
     .mount('#app')
