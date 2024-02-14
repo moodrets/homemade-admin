@@ -1,9 +1,9 @@
 <template>
     <button
-        class="app-button"
+        class="button"
         :class="[
-            `app-button--${theme ?? 'primary'}`,
-            rounded ? 'app-button--rounded' : '',
+            `button--${theme ?? 'primary'}`,
+            rounded ? 'button--rounded' : '',
             loading ? 'pointer-events-none' : '',
         ]"
     >

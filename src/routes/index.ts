@@ -7,10 +7,11 @@ import DefaultLayout from '@/components/layouts/Default.vue'
 
 // views
 import NotFound from '@/components/views/NotFound.vue'
+import Login from '@/components/views/Login.vue'
+import Styles from '@/components/views/Styles.vue'
 import Dashboard from '@/components/views/Dashboard.vue'
 import Profile from '@/components/views/Profile.vue'
-import Styles from '@/components/views/Styles.vue'
-import Login from '@/components/views/Login.vue'
+import { user } from '@/composables/useUser'
 
 const routes: RouteRecordRaw[] = [
     {
@@ -36,6 +37,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: `${routerPath}login`,
+        name: 'login',
         component: Login,
     },
     // 404
@@ -61,7 +63,19 @@ const router = createRouter({
     },
 })
 
-router.beforeEach(() => {})
+router.beforeEach((to, from, next) => {
+    if (!user.isAuthorized.value && to.name !== 'login') {
+        next({ name: 'login' })
+        return
+    }
+
+    if (user.isAuthorized.value && (to.name === 'login' || to.name === 'register')) {
+        next({ name: 'dashboard' })
+        return
+    }
+
+    next()
+})
 
 router.afterEach(() => {})
 

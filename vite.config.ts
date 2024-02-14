@@ -6,12 +6,25 @@ import * as url from 'url'
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-    base: mode === 'development' ? '/' : '/homemade-admin/',
-    plugins: [vue()],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'src'),
+export default defineConfig(({ mode }) => {
+    const isDev = mode === 'development'
+
+    return {
+        base: isDev ? '/' : '/homemade-admin/',
+        plugins: [vue()],
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+            },
         },
-    },
-}))
+        server: {
+            cors: true,
+            proxy: {
+                '/api': {
+                    target: 'http://82.97.241.147:8082',
+                    changeOrigin: true,
+                },
+            },
+        },
+    }
+})

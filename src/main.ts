@@ -7,6 +7,7 @@ import '@/styles/main.scss'
 // vue imports
 import { createApp } from 'vue'
 import { router } from '@/routes'
+import { i18n } from '@/configs/i18n'
 
 // components
 import App from '@/components/App.vue'
@@ -17,12 +18,9 @@ import Button from '@/components/ui/Button.vue'
 
 createApp(App)
     .use(router)
+    .use(i18n)
     .component('Modal', Modal)
     .component('Button', Button)
     .component('Offcanvas', Offcanvas)
     .component('SvgIcon', SvgIcon)
     .mount('#app')
-
-document.fonts.onloadingdone = () => {
-    document.querySelector('.app-wrapper')?.classList.add('is-app-loaded')
-}

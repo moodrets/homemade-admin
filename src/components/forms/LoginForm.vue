@@ -4,15 +4,22 @@
             <img class="block max-w-[80px]" :src="`${routerPath}img/logo.svg`" alt="" />
         </div>
         <div class="mb-4">
-            <input required type="email" class="app-form-control" placeholder="Email" />
+            <input
+                required
+                type="tel"
+                class="app-form-control"
+                placeholder="Ваш телефон"
+                v-model="form.fields.phone"
+            />
         </div>
         <div class="mb-4 relative">
             <input
                 required
                 autocomplete="on"
-                :type="form.passwordFieldType"
                 class="app-form-control pr-10"
                 placeholder="Пароль"
+                :type="form.passwordFieldType"
+                v-model="form.fields.password"
             />
             <div
                 class="absolute cursor-pointer z-[5] right-3 top-1/2 -translate-y-1/2"
@@ -23,21 +30,32 @@
                 </span>
             </div>
         </div>
-        <Button type="submit" class="w-full" :loading="form.loading">Войти</Button>
+        <Button type="submit" class="w-full" :loading="form.loading">
+            {{ $t('message.login') }}
+        </Button>
     </form>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
 import { routerPath } from '@/routes'
-import { wait } from '@/utils/common'
+import { toast } from '@/composables/useToast'
+import { useRouter } from 'vue-router'
+import { authService } from '@/services/AuthService'
+import { user } from '@/composables/useUser'
+import { StorageService } from '@/services/StorageService'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 
 const form = reactive({
     loading: false,
-    fields: {},
+    fields: {
+        phone: '',
+        password: '',
+    },
     passwordFieldType: 'password',
 })
 
@@ -49,10 +67,17 @@ async function onSubmit() {
     try {
         form.loading = true
 
-        await wait(3000)
+        const { data: result } = await authService.login({
+            phone_number: form.fields.phone,
+            password: form.fields.password,
+        })
+
+        user.setData(result)
+        StorageService.set('userData', result)
 
         router.push({ name: 'dashboard' })
-    } catch (error) {
+    } catch (error: unknown) {
+        toast.show('error', t('errors.badCredentials'))
     } finally {
         form.loading = false
     }

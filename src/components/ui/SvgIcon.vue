@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { routerPath } from '@/routes'
 
-const { name } = defineProps<{
+const { name, stroke, nostyle } = defineProps<{
     name: string
     stroke?: boolean
     nostyle?: boolean

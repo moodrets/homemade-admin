@@ -20,16 +20,6 @@ body {
     @apply max-w-[var(--app-container-width)] mx-auto;
 }
 
-.app-wrapper {
-    @apply opacity-0
-        transition-opacity
-        duration-150;
-
-    &.is-app-loaded {
-        @apply opacity-100;
-    }
-}
-
 [class*='material-icons'] {
     @apply flex-none select-none;
 }

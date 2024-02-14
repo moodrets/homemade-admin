@@ -104,7 +104,7 @@ export class RDToast {
         }, options.duration)
 
         if (options.hideOnClick) {
-            toast.addEventListener('click', (e) => {
+            toast.addEventListener('click', () => {
                 clearTimeout(timeout)
                 this.removeToast(toast, options)
             })
