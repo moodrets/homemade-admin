@@ -12,7 +12,7 @@ export function handeAxiosError(error: unknown, message: string = '') {
 }
 
 const apiClient = axios.create({
-    baseURL: '/api',
+    baseURL: import.meta.env.MODE === 'development' ? '/api' : 'http://82.97.241.147:8082/api',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
