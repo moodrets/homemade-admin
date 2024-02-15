@@ -7,12 +7,12 @@
             nostyle ? 'svg-icon--nostyle' : '',
         ]"
     >
-        <svg><use :xlink:href="`${routerPath}svg-sprite.svg#${name}`"></use></svg>
+        <svg><use :xlink:href="`${ROUTER_PATH}svg-sprite.svg#${name}`"></use></svg>
     </div>
 </template>
 
 <script setup lang="ts">
-import { routerPath } from '@/routes'
+import { ROUTER_PATH } from '@/configs/paths'
 
 const { name, stroke, nostyle } = defineProps<{
     name: string

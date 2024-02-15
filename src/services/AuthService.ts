@@ -7,8 +7,6 @@ import { StorageService } from '@/services/StorageService'
 import { user } from '@/composables/useUser'
 
 class AuthService {
-    public register() {}
-
     public async login(dto: LoginDTO): Promise<AxiosResponse<LoginResponseType>> {
         return await apiClient.post('/login', dto)
     }

@@ -10,19 +10,19 @@
         </div>
         <div class="app-logo">
             <router-link :to="{ name: 'dashboard' }" class="block">
-                <img class="block max-w-[40px]" :src="`${routerPath}img/logo.svg`" alt="" />
+                <img class="block max-w-[40px]" :src="`${ROUTER_PATH}img/logo.svg`" alt="" />
             </router-link>
         </div>
         <router-link
             class="w-10 h-10 border flex items-center justify-center border-stone-300 rounded-full overflow-hidden bg-indigo-50"
             :to="{ name: 'profile' }"
         >
-            <img class="object-cover" :src="`${routerPath}img/avatar-default.svg`" alt="" />
+            <img class="object-cover" :src="`${ROUTER_PATH}img/avatar-default.svg`" alt="" />
         </router-link>
     </header>
 </template>
 
 <script setup lang="ts">
 import { offcanvasController } from '@/composables/useOffcanvas'
-import { routerPath } from '@/routes'
+import { ROUTER_PATH } from '@/configs/paths'
 </script>

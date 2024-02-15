@@ -1,14 +1,16 @@
 <template>
     <form class="relative" @submit.prevent="onSubmit">
         <div class="mb-4 flex justify-center">
-            <img class="block max-w-[80px]" :src="`${routerPath}img/logo.svg`" alt="" />
+            <img class="block max-w-[80px]" :src="`${ROUTER_PATH}img/logo.svg`" alt="" />
         </div>
         <div class="mb-4">
             <input
                 required
                 type="tel"
+                maxlength="12"
+                minlength="12"
                 class="app-form-control"
-                placeholder="Ваш телефон"
+                :placeholder="$t('message.phone')"
                 v-model="form.fields.phone"
             />
         </div>
@@ -17,7 +19,7 @@
                 required
                 autocomplete="on"
                 class="app-form-control pr-10"
-                placeholder="Пароль"
+                :placeholder="$t('message.password')"
                 :type="form.passwordFieldType"
                 v-model="form.fields.password"
             />
@@ -30,21 +32,24 @@
                 </span>
             </div>
         </div>
-        <Button type="submit" class="w-full" :loading="form.loading">
-            {{ $t('message.login') }}
-        </Button>
+        <div class="mb-4 flex gap-4">
+            <Button type="submit" class="flex-1" :loading="form.loading">
+                {{ $t('message.login') }}
+            </Button>
+        </div>
     </form>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { routerPath } from '@/routes'
 import { toast } from '@/composables/useToast'
 import { useRouter } from 'vue-router'
 import { authService } from '@/services/AuthService'
 import { user } from '@/composables/useUser'
 import { StorageService } from '@/services/StorageService'
 import { useI18n } from 'vue-i18n'
+import { ROUTER_PATH } from '@/configs/paths'
+import { AxiosError } from 'axios'
 
 const { t } = useI18n()
 
@@ -77,7 +82,14 @@ async function onSubmit() {
 
         router.push({ name: 'dashboard' })
     } catch (error: unknown) {
-        toast.show('error', t('errors.badCredentials'))
+        if (error instanceof AxiosError) {
+            if (error.response?.status === 500) {
+                toast.show('error', t('errors.serverError'))
+            }
+            if (error.response?.status === 422) {
+                toast.show('error', t('errors.badCredentials'))
+            }
+        }
     } finally {
         form.loading = false
     }

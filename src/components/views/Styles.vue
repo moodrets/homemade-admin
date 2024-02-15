@@ -5,13 +5,13 @@
             <div class="flex flex-wrap gap-5">
                 <Button
                     type="button"
-                    class="button uppercase font-bold button-danger"
+                    class="button uppercase font-bold button--info"
                     @click="AppLang.change('en')"
                     >en</Button
                 >
                 <Button
                     type="button"
-                    class="button uppercase font-bold button--info"
+                    class="button uppercase font-bold button--danger"
                     @click="AppLang.change('ru')"
                     >ru</Button
                 >

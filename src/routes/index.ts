@@ -1,6 +1,6 @@
-const routerPath = import.meta.env.VITE_BASE_URI
-
+import { AUTH_PATHS, ROUTER_PATH } from '@/configs/paths'
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
+import { user } from '@/composables/useUser'
 
 // layouts
 import DefaultLayout from '@/components/layouts/Default.vue'
@@ -8,14 +8,14 @@ import DefaultLayout from '@/components/layouts/Default.vue'
 // views
 import NotFound from '@/components/views/NotFound.vue'
 import Login from '@/components/views/Login.vue'
+import Register from '@/components/views/Register.vue'
 import Styles from '@/components/views/Styles.vue'
 import Dashboard from '@/components/views/Dashboard.vue'
 import Profile from '@/components/views/Profile.vue'
-import { user } from '@/composables/useUser'
 
 const routes: RouteRecordRaw[] = [
     {
-        path: routerPath,
+        path: ROUTER_PATH,
         component: DefaultLayout,
         children: [
             {
@@ -36,10 +36,15 @@ const routes: RouteRecordRaw[] = [
         ],
     },
     {
-        path: `${routerPath}login`,
+        path: `${ROUTER_PATH}login`,
         name: 'login',
         component: Login,
     },
+    // {
+    //     path: `${ROUTER_PATH}register`,
+    //     name: 'register',
+    //     component: Register,
+    // },
     // 404
     {
         path: '/:pathMatch(.*)*',
@@ -64,12 +69,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (!user.isAuthorized.value && to.name !== 'login') {
+    if (!user.isAuthorized.value && !AUTH_PATHS.includes(to.path)) {
         next({ name: 'login' })
         return
     }
 
-    if (user.isAuthorized.value && (to.name === 'login' || to.name === 'register')) {
+    if (user.isAuthorized.value && AUTH_PATHS.includes(to.path)) {
         next({ name: 'dashboard' })
         return
     }
@@ -79,4 +84,4 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach(() => {})
 
-export { router, routerPath }
+export { router }
