@@ -4,7 +4,9 @@
         :class="{ 'is-open': offcanvasController.isVisible(name) }"
         @click="clickHandler"
     >
-        <div class="offcanvas__body"></div>
+        <div class="offcanvas__body">
+            <slot></slot>
+        </div>
     </div>
 </template>
 

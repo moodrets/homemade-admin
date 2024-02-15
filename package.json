@@ -4,11 +4,12 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite --port 7172",
-        "build": "vue-tsc && vite build",
+        "dev": "vite",
+        "build-pages": "vue-tsc && vite build --mode pages",
+        "build-prod": "vue-tsc && vite build --mode production",
         "preview": "vite preview",
         "copy-404": "cd dist && cp index.html 404.html && cd ..",
-        "deploy": "vue-tsc && vite build && npm run copy-404 && gh-pages -d dist"
+        "deploy": "npm run build-pages && npm run copy-404 && gh-pages -d dist"
     },
     "dependencies": {
         "@vueuse/core": "^10.7.2",

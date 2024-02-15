@@ -1,4 +1,4 @@
-const routerPath = import.meta.env.MODE === 'development' ? '/' : '/homemade-admin/'
+const routerPath = import.meta.env.VITE_BASE_URI
 
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
