@@ -8,12 +8,16 @@ import DefaultLayout from '@/components/layouts/Default.vue'
 // views
 import NotFound from '@/components/views/NotFound.vue'
 import Login from '@/components/views/Login.vue'
-import Register from '@/components/views/Register.vue'
 import Styles from '@/components/views/Styles.vue'
 import Dashboard from '@/components/views/Dashboard.vue'
 import Profile from '@/components/views/Profile.vue'
 
 const routes: RouteRecordRaw[] = [
+    {
+        path: `${ROUTER_PATH}login`,
+        name: 'login',
+        component: Login,
+    },
     {
         path: ROUTER_PATH,
         component: DefaultLayout,
@@ -35,16 +39,6 @@ const routes: RouteRecordRaw[] = [
             },
         ],
     },
-    {
-        path: `${ROUTER_PATH}login`,
-        name: 'login',
-        component: Login,
-    },
-    // {
-    //     path: `${ROUTER_PATH}register`,
-    //     name: 'register',
-    //     component: Register,
-    // },
     // 404
     {
         path: '/:pathMatch(.*)*',
@@ -68,13 +62,13 @@ const router = createRouter({
     },
 })
 
-router.beforeEach((to, from, next) => {
-    if (!user.isAuthorized.value && !AUTH_PATHS.includes(to.path)) {
+router.beforeResolve((to, from, next) => {
+    if (!user.isAuthorized.value && to.name !== 'login') {
         next({ name: 'login' })
         return
     }
 
-    if (user.isAuthorized.value && AUTH_PATHS.includes(to.path)) {
+    if (user.isAuthorized.value && to.name === 'login') {
         next({ name: 'dashboard' })
         return
     }
